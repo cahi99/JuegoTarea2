@@ -9,11 +9,14 @@ public class Patrulla : MonoBehaviour
     [SerializeField] private bool Destino;
     private Vector3 destinoActual;
     private int indiceActual = 0;
+    [SerializeField] private bool CanAttack;
+    private Animator animator;
     private bool jugadorDetectado = false;
     // Start is called before the first frame update
     void Start()
     {
         destinoActual = puntos[indiceActual].position;
+        animator = GetComponent<Animator>();
         StartCoroutine(Patrullas());
     }
 
@@ -33,8 +36,9 @@ public class Patrulla : MonoBehaviour
                 yield return null;
 
             }
-
+            
             DefinirNuevoDestino();
+
 
         }
     }
@@ -52,6 +56,10 @@ public class Patrulla : MonoBehaviour
         if (Destino)
         {
             EnfocarDestino();
+            if(CanAttack)
+            {
+                animator.SetTrigger("Atacar");
+            }
         }
     }
 
