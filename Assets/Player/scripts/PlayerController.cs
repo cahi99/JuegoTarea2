@@ -4,151 +4,211 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [Header("Movimiento")]
-    public float moveSpeed;
-
-    [Header("Salto")]
-    public float timeInverseJump = 0.2f;
-    public float timer = 1;
-    public bool isWallOverlap;
-    public int numJump = 0;
-    public float jumpForce;
-    public bool stayDirJump = false;
-    public float dirJump;
 
     [Header("Componentes")]
     public Rigidbody2D theRB;
 
-    [Header("Detección de piso")]
-    public bool isGrounded;
+    [Header("Movimiento")]
+    private float movimientoHorizontal = 0f;
+    [SerializeField] private float velocidadDeMovimiento;
+    [Range(0, 0.3f)][SerializeField] private float suavizadoDeMovimiento;
+    private Vector2 velocidad;
+    private bool mirandoDerecha = true;
+    private float inputX;
 
-    public Transform groundCheckpoint;
+    [Header("Salto")]
+    //public float timeInverseJump = 0.2f;
+    //public float timer = 1;
+    [SerializeField] private float fuerzaDeSalto;
+    [SerializeField] public Transform controladorSuelo;
+    [SerializeField] public LayerMask queEsSuelo;
+    [SerializeField] public Vector2 dimensionesCaja;
+    [SerializeField] public bool enSuelo;
+    [SerializeField] public int saltosRestantes;
+    [SerializeField] public int saltos;
+    [SerializeField] public int saltosPared;
+    private bool salto = true;
 
-    public LayerMask whatIsGround;
+
+    [Header("Detección de pared")]
+    [SerializeField] private Transform controladorPared;
+    [SerializeField] private Vector2 dimensionesCajaPared;
+    private bool enPared;
+    private bool deslizando;
+    [SerializeField] private float velocidadDeslizar;
+    [SerializeField] private float fuerzaSaltoParedX;
+    [SerializeField] private float fuerzaSaltoParedY;
+    [SerializeField] private float tiempoSaltoPared;
+    [SerializeField] private bool saltandoDePared;
+
+    [Header("Animación")]
+    private Animator animator;
+
+    [Header("Salto Regulable")]
+    [Range(0, 1)][SerializeField] private float multiplicadorCancelarSalto;
+    [SerializeField] private float multiplicadorGravedad;
+    private float escalaGravedad;
+    private bool botonSaltoArriba = true;
 
     void Start()
     {
-        
+        theRB = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
+        escalaGravedad = theRB.gravityScale;
     }
 
     
     void Update()
     {
-        //if (Input.GetKeyDown(KeyCode.Space))
+        inputX = Input.GetAxisRaw("Horizontal");
+        movimientoHorizontal = inputX * velocidadDeMovimiento;
+        
+        animator.SetFloat("Horizontal", Mathf.Abs(movimientoHorizontal));
+        animator.SetFloat("VelocidadY", theRB.velocity.y);
+        
+        animator.SetBool("Deslizando", deslizando);
 
-        /*isGrounded = Physics2D.OverlapCircle(groundCheckpoint.position, .2f, whatIsGround);
-        if (isGrounded)
+        if (enSuelo)
         {
-            numJump = 2;
-        }*/
-        float horizontalDireccion = 1;
-        if(dirJump != Input.GetAxisRaw("Horizontal"))
-        {
-            stayDirJump = false;
+            saltosRestantes = saltos;
         }
 
-        float ydirection = theRB.velocity.y;
-
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButton("Jump"))
         {
-            print("dirJump");
-            print(dirJump);
-            print("horizontal");
-            print(Input.GetAxisRaw("Horizontal"));
-            isGrounded = Physics2D.OverlapCircle(groundCheckpoint.position, .2f, whatIsGround);
-            bool canJump = true;
-            if (isWallOverlap && !isGrounded)
-            {
-                if (Input.GetAxisRaw("Horizontal") != 0 && dirJump != Input.GetAxisRaw("Horizontal"))
-                {
-                    dirJump = Input.GetAxisRaw("Horizontal");
-                    numJump = 2;
-                    stayDirJump = true;
-                    timeInverseJump = 0.2f;
-                    timer = 0;
-                }
-                else
-                {
-                    canJump = false;
-                }
-            }
-            if (canJump)
-            {
-            print("numJump");
-            print(numJump);
-                if (numJump > 0)
-                {
-                    numJump -= 1;
-                    ydirection = jumpForce;
-
-                }
-            }
-                
-            /*if (isGrounded)
-            {
-                theRB.velocity = new Vector2(theRB.velocity.x, jumpForce);
-                numExtraJump = 1;
-            }
-            else
-            {
-                if (numExtraJump > 0)
-                {
-                    numExtraJump-= 1;
-
-                }
-            }*/
+            salto = true;
         }
-        if (timer < timeInverseJump && stayDirJump)//make inverse direccion by time jump
+
+        if (Input.GetButtonUp("Jump"))
         {
-            isWallOverlap = false;
-            horizontalDireccion = -1;
-            timer += Time.deltaTime;
+            //boton de salto arriba
+            BotonSaltoArriba();
+        }
+
+        if(!enSuelo && enPared && inputX !=0)
+        {
+            deslizando = true;
         }
         else
         {
-            horizontalDireccion = 1;
-        }
-        theRB.velocity = new Vector2(horizontalDireccion * moveSpeed * Input.GetAxisRaw("Horizontal"), ydirection) ;
-    }
-    private void OnCollisionStay2D(Collision2D collision)
-    {
-        if (collision.gameObject.layer == 7)
-        {
-            isGrounded = Physics2D.OverlapCircle(groundCheckpoint.position, .2f, whatIsGround);
-            if (isGrounded)
-            {
-                numJump = 1;
-                dirJump = 0;
-                isWallOverlap = false;
-            }
-            else
-            {
-                isWallOverlap = true;
-                //if (dirJump != Input.GetAxisRaw("Horizontal") && Input.GetAxisRaw("Horizontal") != 0 && dirJump != 0)
-                /*if (dirJump == 0 || ( dirJump != Input.GetAxisRaw("Horizontal") && Input.GetAxisRaw("Horizontal") != 0 ) )
-                {
-                    isWallOverlap = true;
-                }
-                else
-                {
-                    //dirJump = Input.GetAxisRaw("Horizontal");
-                    isWallOverlap = false;
-                    //numJump = 0;
-                }*/
-            }
-
+            deslizando = false;
         }
 
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
+    private void FixedUpdate()
     {
-        isWallOverlap = false;
-        /*if (isWallOverlap && dirJump != Input.GetAxisRaw("Horizontal") && dirJump !=0)
-        {
-            numJump = 2;
+        enSuelo = Physics2D.OverlapBox(controladorSuelo.position, dimensionesCaja, 0f, queEsSuelo);
+        animator.SetBool("enSuelo", enSuelo);
+        
+        enPared = Physics2D.OverlapBox(controladorPared.position, dimensionesCaja, 0f, queEsSuelo);
 
-        }*/
+        Mover(movimientoHorizontal * Time.fixedDeltaTime, salto);
+        
+        if(theRB.velocity.y < 0 && !enSuelo)
+        {
+            theRB.gravityScale = escalaGravedad * multiplicadorGravedad;
+        }
+        else
+        {
+            theRB.gravityScale = escalaGravedad;
+        }
+        salto = false;
+
+        if (deslizando)
+        {
+            theRB.velocity = new Vector2(theRB.velocity.x, Mathf.Clamp(theRB.velocity.y, -velocidadDeslizar, float.MaxValue));
+        }
     }
+
+    private void Mover(float mover, bool saltar)
+    {
+        if(!saltandoDePared)
+        {
+            Vector2 velocidadObjetivo = new Vector2(mover, theRB.velocity.y);
+            theRB.velocity = Vector2.SmoothDamp(theRB.velocity, velocidadObjetivo, ref velocidad, suavizadoDeMovimiento);
+        }
+
+        if (mover>0 && !mirandoDerecha)
+        {
+            Girar();
+        }
+        else if(mover<0 && mirandoDerecha)
+        {
+            Girar();
+        }
+
+        if(saltar && enSuelo && !deslizando && botonSaltoArriba && saltosRestantes > 0)
+        {
+            Salto();
+            saltosRestantes--;
+        }
+
+        if(saltar && !enSuelo && !deslizando && botonSaltoArriba && saltosRestantes > 0)
+        {
+            Salto();
+            saltosRestantes--;
+
+        }
+
+        if(saltar && enPared && deslizando && botonSaltoArriba && saltosPared > 0)
+        {
+            SaltoPared();
+            saltosRestantes = saltosPared;
+
+            saltosRestantes--;
+        }
+    }
+
+    private void SaltoPared()
+    {
+        enPared = false;
+        theRB.velocity = new Vector2(fuerzaSaltoParedX * -inputX, fuerzaSaltoParedY);
+        StartCoroutine(CambioSaltoPared());
+        salto = false;
+        botonSaltoArriba = false;
+    }
+
+    private void Salto()
+    {
+        enSuelo = false;
+        //theRB.AddForce(new Vector2(0f, fuerzaDeSalto));
+        theRB.velocity = new Vector2(0f, fuerzaDeSalto);
+        salto = false;
+        botonSaltoArriba = false;
+    }
+
+    private void BotonSaltoArriba()
+    {
+        if (theRB.velocity.y>0)
+        {
+            theRB.AddForce(Vector2.down * theRB.velocity.y * (1 - multiplicadorCancelarSalto), ForceMode2D.Impulse);
+        }
+
+        botonSaltoArriba = true;
+        salto = false;
+    }
+
+    IEnumerator CambioSaltoPared()
+    {
+        saltandoDePared = true;
+        yield return new WaitForSeconds(tiempoSaltoPared);
+        saltandoDePared = false;
+    }
+
+    private void Girar()
+    {
+        mirandoDerecha = !mirandoDerecha;
+        Vector3 escala = transform.localScale;
+        escala.x *= -1;
+        transform.localScale = escala;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireCube(controladorSuelo.position, dimensionesCaja);
+        Gizmos.DrawWireCube(controladorPared.position, dimensionesCajaPared);
+    }
+
 
 }
