@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1239944008807535407}
   m_Layer: 0
   m_Name: Abejita
-  m_TagString: Untagged
+  m_TagString: Enemigo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
