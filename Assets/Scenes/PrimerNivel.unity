@@ -234,7 +234,7 @@ Transform:
   m_GameObject: {fileID: 122445095}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.77999973, y: -0.89000034, z: 10}
+  m_LocalPosition: {x: 0.77999973, y: -0.89000034, z: -2}
   m_LocalScale: {x: 6.681817, y: 6.681817, z: 6.681817}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -866,6 +866,7 @@ GameObject:
   - component: {fileID: 812324405}
   - component: {fileID: 812324406}
   - component: {fileID: 812324408}
+  - component: {fileID: 812324409}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1019,6 +1020,7 @@ MonoBehaviour:
   theRB: {fileID: 812324405}
   velocidadDeMovimiento: 400
   suavizadoDeMovimiento: 0
+  mirandoDerecha: 1
   fuerzaDeSalto: 13
   controladorSuelo: {fileID: 414568590}
   queEsSuelo:
@@ -1038,6 +1040,8 @@ MonoBehaviour:
   saltandoDePared: 0
   multiplicadorCancelarSalto: 0.1
   multiplicadorGravedad: 1
+  velocidadRebote: 12
+  "velocidadReboteDa\xF1o": 5
 --- !u!95 &812324408
 Animator:
   serializedVersion: 5
@@ -1059,6 +1063,23 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &812324409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 812324402}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6af4510b27ec28a4da3526e74120d9df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vida: 3
+  baseVida: 3
+  maximoVida: 9
+  "tiempoEntreDa\xF1o": 1.2
+  "tiempoSiguienteDa\xF1o": 0
 --- !u!1 &915805086
 GameObject:
   m_ObjectHideFlags: 0
