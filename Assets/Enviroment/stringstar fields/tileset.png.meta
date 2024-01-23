@@ -273,9 +273,9 @@ TextureImporter:
       name: tileset_7
       rect:
         serializedVersion: 2
-        x: 112
-        y: 64
-        width: 48
+        x: 117
+        y: 65
+        width: 35
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: 0.25}

@@ -23,11 +23,15 @@ public class Bat_flying_Beheviour : StateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+
+        bat.AILerp.canMove = true;
+        bat.destinationSetter.target = jugador;
         animator.transform.position = Vector2.MoveTowards(animator.transform.position, jugador.position, velocidadMovimiento * Time.deltaTime);
         bat.Girar(jugador.position);
         tiempoSeguir -= Time.deltaTime;
         if(tiempoSeguir <= 0)
         {
+            bat.destinationSetter.target = bat.pinicial;
             animator.SetTrigger("Volver");
         }
     }

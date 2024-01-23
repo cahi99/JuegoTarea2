@@ -11,7 +11,7 @@ public class Bat_Return_Behaviour : StateMachineBehaviour
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         bat = animator.gameObject.GetComponent<Seguimiento>();
-        puntoInicial = bat.puntoInicial;
+        puntoInicial = bat.pinicial.position;
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -21,6 +21,7 @@ public class Bat_Return_Behaviour : StateMachineBehaviour
         bat.Girar(puntoInicial);
         if (animator.transform.position == puntoInicial) {
             animator.SetTrigger("Llego");
+            bat.AILerp.canMove = false;
         }
     }
 
