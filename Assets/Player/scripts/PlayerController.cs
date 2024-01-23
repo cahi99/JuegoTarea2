@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float velocidadDeMovimiento;
     [Range(0, 0.3f)][SerializeField] private float suavizadoDeMovimiento;
     private Vector2 velocidad;
-    private bool mirandoDerecha = true;
+    public bool mirandoDerecha = true ;
     private float inputX;
 
     [Header("Salto")]
@@ -49,6 +49,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float multiplicadorGravedad;
     private float escalaGravedad;
     private bool botonSaltoArriba = true;
+
+    [Header("Rebote")]
+    [SerializeField] private float velocidadRebote;
+    [SerializeField] private float velocidadReboteDaño=8;
 
     void Start()
     {
@@ -159,6 +163,25 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void Rebote()
+    {
+        theRB.velocity = new Vector2(theRB.velocity.x, velocidadRebote);
+        saltosRestantes = 1;
+    }
+
+    public void ReboteDaño()
+    {
+        int dir = 1;
+        if (mirandoDerecha)
+        {
+            dir *= -1;
+        }
+        StartCoroutine(CambioSaltoPared());
+        theRB.velocity = new Vector2(dir * velocidadReboteDaño, velocidadReboteDaño);
+        //theRB.AddForce(new Vector2(dir * velocidadReboteDaño, 0f));
+        saltosRestantes = 1;
+    }
+
     private void SaltoPared()
     {
         enPared = false;
@@ -192,6 +215,13 @@ public class PlayerController : MonoBehaviour
     {
         saltandoDePared = true;
         yield return new WaitForSeconds(tiempoSaltoPared);
+        saltandoDePared = false;
+    }
+
+    IEnumerator waitDamage()
+    {
+        saltandoDePared = true;
+        yield return new WaitForSeconds(1.2f);
         saltandoDePared = false;
     }
 
