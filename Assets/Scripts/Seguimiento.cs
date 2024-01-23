@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Seguimiento : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class Seguimiento : MonoBehaviour
     public Vector3 puntoInicial;
     private Animator animator;
     private SpriteRenderer spriteRenderer;
+    private NavMeshAgent navMeshAgent;
 
     // Start is called before the first frame update
     void Start()
@@ -18,11 +20,16 @@ public class Seguimiento : MonoBehaviour
         animator = GetComponent<Animator>(); 
         spriteRenderer = GetComponent<SpriteRenderer>();
         puntoInicial = transform.position;
+        navMeshAgent = GetComponent<NavMeshAgent>();
+        navMeshAgent.updateRotation = false;
+        navMeshAgent.updateUpAxis = false;
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        navMeshAgent.SetDestination(jugador.position);
         distancia = Vector2.Distance(transform.position , jugador.position);
         animator.SetFloat("Distancia", distancia);
     }
