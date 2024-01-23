@@ -84,7 +84,7 @@ MonoBehaviour:
   salud: 3
   controladorGolpe: {fileID: 816526023602143443}
   dimensionesCaja: {x: 1, y: 0.3}
-  "da\xF1oGolpe": 0
+  "da\xF1oGolpe": 1
 --- !u!212 &1710033716591877970
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -201,7 +201,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!70 &6702551312053140517
 CapsuleCollider2D:
