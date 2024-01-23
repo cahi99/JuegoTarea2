@@ -46,6 +46,7 @@ public class CombateJugador : MonoBehaviour
             {
                 Destroy(gameObject);
                 creditos.SetActive(true);
+
             }
         }
     }
