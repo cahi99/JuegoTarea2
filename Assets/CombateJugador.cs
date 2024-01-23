@@ -6,8 +6,9 @@ public class CombateJugador : MonoBehaviour
 {
     [Header("Salud jugador")]
     [SerializeField] private int vida = 3;
-    [SerializeField] private int baseVida = 3;
+    [SerializeField] private int baseVida = 5;
     [SerializeField] private int maximoVida = 9;
+    [SerializeField] private Canvas HUD;
 
     [Header("Control Daño")]
     [SerializeField] private float tiempoEntreDaño;
@@ -17,6 +18,7 @@ public class CombateJugador : MonoBehaviour
     void Start()
     {
         vida = baseVida;
+        HUD.GetComponent<userHUD>().ActualizarVidas(vida);
     }
 
     private void Update()
@@ -38,6 +40,7 @@ public class CombateJugador : MonoBehaviour
             tiempoSiguienteDaño = tiempoEntreDaño;
             vida -= daño;
             gameObject.GetComponent<PlayerController>().ReboteDaño();
+            HUD.GetComponent<userHUD>().ActualizarVidas(vida);
             if (vida <= 0)
             {
                 Destroy(gameObject);
@@ -55,6 +58,7 @@ public class CombateJugador : MonoBehaviour
         {
             vida += curacion;
         }
+        HUD.GetComponent<userHUD>().ActualizarVidas(vida);
     }
 
 }
