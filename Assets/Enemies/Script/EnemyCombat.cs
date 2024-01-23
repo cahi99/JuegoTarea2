@@ -14,6 +14,7 @@ public class EnemyCombat : MonoBehaviour
     [SerializeField] private Transform controladorGolpe;
     [SerializeField] private Vector2 dimensionesCaja;
     [SerializeField] private int dañoGolpe;
+    [SerializeField] private bool rebota=true;
 
     private void Start()
     {
@@ -33,9 +34,8 @@ public class EnemyCombat : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             print("contacto1");
-            if (collision.GetContact(0).normal.y <= -0.5)
+            if (collision.GetContact(0).normal.y <= -0.5 && rebota)
             {
-                print("contacto");
                 animator.SetTrigger("Hit");
                 collision.gameObject.GetComponent<PlayerController>().Rebote();
                 TomarDaño(1);
@@ -66,12 +66,9 @@ public class EnemyCombat : MonoBehaviour
     public void Golpe()
     {
         Collider2D[] objetos = Physics2D.OverlapBoxAll(controladorGolpe.position, dimensionesCaja, 0f);
-        print("fuera");
 
         foreach (Collider2D colisionador in objetos)
         {
-            print("golpe");
-            print(colisionador.CompareTag("Player"));
             if (colisionador.gameObject.CompareTag("Player"))
             {
                 colisionador.transform.GetComponent<CombateJugador>().TomarDaño(dañoGolpe);
