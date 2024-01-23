@@ -126,7 +126,7 @@ MonoBehaviour:
   puntos:
   - {fileID: 0}
   - {fileID: 0}
-  VelPatrulla: 12
+  VelPatrulla: 7
   Destino: 0
   CanAttack: 1
 --- !u!114 &-1211297405536482480

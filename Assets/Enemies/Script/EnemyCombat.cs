@@ -36,9 +36,16 @@ public class EnemyCombat : MonoBehaviour
             print("contacto1");
             if (collision.GetContact(0).normal.y <= -0.5 && rebota)
             {
-                animator.SetTrigger("Hit");
-                collision.gameObject.GetComponent<PlayerController>().Rebote();
-                TomarDaño(1);
+                if (rebota)
+                {
+                    animator.SetTrigger("Hit");
+                    collision.gameObject.GetComponent<PlayerController>().Rebote();
+                    TomarDaño(1);
+                }
+                else
+                {
+                    collision.gameObject.GetComponent<PlayerController>().SaltoNoRebote();
+                }
             }
         }
     }
