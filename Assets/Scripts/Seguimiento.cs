@@ -14,6 +14,7 @@ public class Seguimiento : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        jugador = GameObject.FindWithTag("Player").transform;
         animator = GetComponent<Animator>(); 
         spriteRenderer = GetComponent<SpriteRenderer>();
         puntoInicial = transform.position;

@@ -16,6 +16,10 @@ public class PlayerController : MonoBehaviour
     public bool mirandoDerecha = true ;
     private float inputX;
 
+    [Header("Movimiento")]
+    public bool esGrande = true;
+    [SerializeField] public float EscaladoGrande = 2;
+
     [Header("Salto")]
     //public float timeInverseJump = 0.2f;
     //public float timer = 1;
@@ -65,12 +69,23 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         inputX = Input.GetAxisRaw("Horizontal");
+        float inputY = Input.GetAxisRaw("Vertical");
         movimientoHorizontal = inputX * velocidadDeMovimiento;
         
         animator.SetFloat("Horizontal", Mathf.Abs(movimientoHorizontal));
         animator.SetFloat("VelocidadY", theRB.velocity.y);
         
         animator.SetBool("Deslizando", deslizando);
+
+        if(esGrande && inputY<0)
+        {
+            Empequeñeser();
+        }
+
+        if(!esGrande && inputY>0)
+        {
+            Agrandar();
+        }
 
         if (enSuelo)
         {
@@ -169,6 +184,11 @@ public class PlayerController : MonoBehaviour
         saltosRestantes = 1;
     }
 
+    public void SaltoNoRebote()
+    {
+        saltosRestantes = 2;
+    }
+
     public void ReboteDaño()
     {
         int dir = 1;
@@ -231,6 +251,27 @@ public class PlayerController : MonoBehaviour
         Vector3 escala = transform.localScale;
         escala.x *= -1;
         transform.localScale = escala;
+    }
+
+    private void Agrandar()
+    {
+        esGrande = true;
+        Vector3 escala = transform.localScale;
+        escala.x *= EscaladoGrande;
+        escala.y *= EscaladoGrande;
+        escala.z *= EscaladoGrande;
+        transform.localScale = escala;
+    }
+
+    private void Empequeñeser()
+    {
+        esGrande = false;
+        Vector3 escala = transform.localScale;
+        escala.x /= EscaladoGrande;
+        escala.y /= EscaladoGrande;
+        escala.z /= EscaladoGrande;
+        transform.localScale = escala;
+
     }
 
     private void OnDrawGizmos()

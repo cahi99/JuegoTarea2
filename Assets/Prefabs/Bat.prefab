@@ -124,7 +124,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jugador: {fileID: 0}
-  distancia: 3
+  distancia: 1.5
   puntoInicial: {x: 0, y: 0, z: 0}
 --- !u!114 &8531813816813882442
 MonoBehaviour:
@@ -142,6 +142,7 @@ MonoBehaviour:
   controladorGolpe: {fileID: 3786849032493798753}
   dimensionesCaja: {x: 0, y: 0}
   "da\xF1oGolpe": 0
+  rebota: 1
 --- !u!50 &233259819104616260
 Rigidbody2D:
   serializedVersion: 4
