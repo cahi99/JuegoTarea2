@@ -763,6 +763,8 @@ MonoBehaviour:
   velocidadDeMovimiento: 400
   suavizadoDeMovimiento: 0
   mirandoDerecha: 1
+  esGrande: 1
+  EscaladoGrande: 2
   fuerzaDeSalto: 13
   controladorSuelo: {fileID: 4351665344027541446}
   queEsSuelo:
@@ -935,6 +937,7 @@ MonoBehaviour:
   baseVida: 5
   maximoVida: 9
   HUD: {fileID: 5338353625150993086}
+  creditos: {fileID: 0}
   "tiempoEntreDa\xF1o": 1.2
   "tiempoSiguienteDa\xF1o": 0
 --- !u!1 &6162272293376272301
@@ -1028,7 +1031,7 @@ Transform:
   m_GameObject: {fileID: 7852578431503436864}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.77999973, y: -0.89000034, z: -2}
+  m_LocalPosition: {x: 0.77999973, y: -0.89000034, z: 74}
   m_LocalScale: {x: 6.681817, y: 6.681817, z: 6.681817}
   m_ConstrainProportionsScale: 0
   m_Children: []
