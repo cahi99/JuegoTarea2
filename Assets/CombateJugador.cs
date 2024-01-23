@@ -61,4 +61,8 @@ public class CombateJugador : MonoBehaviour
         HUD.GetComponent<userHUD>().ActualizarVidas(vida);
     }
 
+    public void saveLife()
+    {
+        ControladorGlobal.Instance.ActualizarSalud(vida);
+    }
 }
