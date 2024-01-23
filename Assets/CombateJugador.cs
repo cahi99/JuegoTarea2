@@ -9,6 +9,7 @@ public class CombateJugador : MonoBehaviour
     [SerializeField] private int baseVida = 5;
     [SerializeField] private int maximoVida = 9;
     [SerializeField] private Canvas HUD;
+    [SerializeField] private GameObject creditos;
 
     [Header("Control Daño")]
     [SerializeField] private float tiempoEntreDaño;
@@ -44,6 +45,7 @@ public class CombateJugador : MonoBehaviour
             if (vida <= 0)
             {
                 Destroy(gameObject);
+                creditos.SetActive(true);
             }
         }
     }
