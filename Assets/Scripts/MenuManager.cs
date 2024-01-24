@@ -24,17 +24,12 @@ public class MenuManager : MonoBehaviour
 
     private void Start()
     {
-        textboton = Jugar.GetComponent<Text>();
-        textboton.text = "Continuar";
+        
     }
 
     private void Update()
     {
-       if(jugador != null)
-        {
-         textboton.text = "Reintentar";
-            Jugar.onClick.AddListener(() => Reiniciar());
-        }
+       
     }
 
 

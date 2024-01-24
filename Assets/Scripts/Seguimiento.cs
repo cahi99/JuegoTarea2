@@ -30,8 +30,11 @@ public class Seguimiento : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        distancia = Vector2.Distance(transform.position, jugador.position);
-        animator.SetFloat("Distancia", distancia);
+        if(jugador != null)
+        {
+            distancia = Vector2.Distance(transform.position, jugador.position);
+            animator.SetFloat("Distancia", distancia);
+        }
 
     }
 

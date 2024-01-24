@@ -31,6 +31,7 @@ public class EnemyCombat : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+            print("contacto2");
         if (collision.gameObject.CompareTag("Player"))
         {
             print("contacto1");
