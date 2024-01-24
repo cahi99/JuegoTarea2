@@ -260,6 +260,11 @@ public class PlayerController : MonoBehaviour
         escala.x *= EscaladoGrande;
         escala.y *= EscaladoGrande;
         escala.z *= EscaladoGrande;
+        dimensionesCaja.x *= EscaladoGrande;
+        dimensionesCaja.y *= EscaladoGrande;
+        dimensionesCajaPared.x *= EscaladoGrande;
+        dimensionesCajaPared.y *= EscaladoGrande;
+
         transform.localScale = escala;
     }
 
@@ -270,6 +275,10 @@ public class PlayerController : MonoBehaviour
         escala.x /= EscaladoGrande;
         escala.y /= EscaladoGrande;
         escala.z /= EscaladoGrande;
+        dimensionesCaja.x /= EscaladoGrande;
+        dimensionesCaja.y /= EscaladoGrande;
+        dimensionesCajaPared.x /= EscaladoGrande;
+        dimensionesCajaPared.y /= EscaladoGrande;
         transform.localScale = escala;
 
     }

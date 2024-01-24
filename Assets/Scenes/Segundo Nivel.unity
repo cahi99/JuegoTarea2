@@ -40552,6 +40552,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pauseMenuUI: {fileID: 1241685297}
   MenuCreditoUI: {fileID: 718879869}
+  MenuCreditoMuerteUI: {fileID: 236958315}
 --- !u!4 &1064969748
 Transform:
   m_ObjectHideFlags: 0

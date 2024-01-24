@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 
     public GameObject pauseMenuUI;
     public GameObject MenuCreditoUI;
+    public GameObject MenuCreditoMuerteUI;
 
     private bool isGamePaused = false;
 

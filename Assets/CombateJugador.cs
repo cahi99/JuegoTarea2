@@ -18,6 +18,7 @@ public class CombateJugador : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        creditos = GameManager.instance.MenuCreditoMuerteUI;
         vida = baseVida;
         HUD.GetComponent<userHUD>().ActualizarVidas(vida);
     }
