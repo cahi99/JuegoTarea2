@@ -116,6 +116,9 @@ MonoBehaviour:
   theRB: {fileID: 3292414969381578155}
   velocidadDeMovimiento: 400
   suavizadoDeMovimiento: 0
+  mirandoDerecha: 1
+  esGrande: 1
+  EscaladoGrande: 2
   fuerzaDeSalto: 13
   controladorSuelo: {fileID: 208326316991417330}
   queEsSuelo:
@@ -135,6 +138,8 @@ MonoBehaviour:
   saltandoDePared: 0
   multiplicadorCancelarSalto: 0.1
   multiplicadorGravedad: 1
+  velocidadRebote: 0
+  "velocidadReboteDa\xF1o": 8
 --- !u!212 &8921694961085583391
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -285,4 +290,7 @@ MonoBehaviour:
   vida: 3
   baseVida: 3
   maximoVida: 9
+  HUD: {fileID: 0}
+  creditos: {fileID: 0}
   "tiempoEntreDa\xF1o": 0
+  "tiempoSiguienteDa\xF1o": 0

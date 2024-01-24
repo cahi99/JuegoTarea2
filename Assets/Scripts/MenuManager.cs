@@ -35,7 +35,15 @@ public class MenuManager : MonoBehaviour
 
     public void Reiniciar()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        if(ControladorGlobal.Instance.nivel == -1)
+        {
+            ControladorGlobal.Instance.ActualizarNivel(1);
+            SceneManager.LoadScene(0);
+        }
+        else
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
     }
 
     public void Salir()

@@ -35,7 +35,7 @@ public class EnemyCombat : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             print("contacto1");
-            if (collision.GetContact(0).normal.y <= -0.5 && rebota)
+            if (collision.GetContact(0).normal.y <= -0.5)
             {
                 if (rebota)
                 {
@@ -57,6 +57,7 @@ public class EnemyCombat : MonoBehaviour
         {
             if ( !(collision.GetContact(0).normal.y <= -0.5) )
             {
+                    Debug.LogWarning("golpe");
                 collision.gameObject.GetComponent<CombateJugador>().TomarDaño(1);
             }
         }

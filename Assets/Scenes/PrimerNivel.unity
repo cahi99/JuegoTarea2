@@ -1244,6 +1244,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 903941756}
+        m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
+        m_MethodName: Reanudar
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &386308560
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2492,6 +2504,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenuUI: {fileID: 864581911}
+  MenuCreditoUI: {fileID: 713786380}
 --- !u!4 &686390110
 Transform:
   m_ObjectHideFlags: 0
@@ -3399,6 +3412,17 @@ Transform:
   - {fileID: 386606308}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &995048367 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4926080302659549166, guid: 77ffeeaaab8cd07478c1c716a00eda71, type: 3}
+  m_PrefabInstance: {fileID: 6746125924880770102}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &996310812
 GameObject:
   m_ObjectHideFlags: 0
@@ -4840,7 +4864,7 @@ GameObject:
   - component: {fileID: 1294996822}
   m_Layer: 0
   m_Name: ControladorGlobal
-  m_TagString: Untagged
+  m_TagString: ControladorGlobal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4860,6 +4884,12 @@ MonoBehaviour:
   puntuacion: 0
   salud: 0
   vida: 0
+  nivel: 0
+  tiempo: 0
+  segundos: 0
+  minutos: 0
+  horas: 0
+  timerText: {fileID: 0}
 --- !u!4 &1294996823
 Transform:
   m_ObjectHideFlags: 0
@@ -31636,6 +31666,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Jugador
       objectReference: {fileID: 0}
+    - target: {fileID: 7381266345046793971, guid: 77ffeeaaab8cd07478c1c716a00eda71, type: 3}
+      propertyPath: timerText
+      value: 
+      objectReference: {fileID: 995048367}
     - target: {fileID: 7716664567254142758, guid: 77ffeeaaab8cd07478c1c716a00eda71, type: 3}
       propertyPath: creditos
       value: 

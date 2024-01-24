@@ -3,9 +3,10 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    private static GameManager instance;
+    public static GameManager instance;
 
     public GameObject pauseMenuUI;
+    public GameObject MenuCreditoUI;
 
     private bool isGamePaused = false;
 

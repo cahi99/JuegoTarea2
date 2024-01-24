@@ -9,6 +9,12 @@ public class EndPoint : MonoBehaviour
 {
     [SerializeField] private bool final;
     public GameObject MenuCreditos;
+
+    private void Start()
+    {
+        MenuCreditos = GameManager.instance.MenuCreditoUI;
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player") && !final)
@@ -18,6 +24,7 @@ public class EndPoint : MonoBehaviour
         }
         if (final)
         {
+            ControladorGlobal.Instance.ActualizarNivel(-1);
             Time.timeScale = 0f;
             MenuCreditos.SetActive(true);
         }

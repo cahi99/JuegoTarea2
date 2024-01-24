@@ -8,6 +8,12 @@ public class userHUD : MonoBehaviour
     [SerializeField] private GameObject[] corazones;
     [SerializeField] private TextMeshProUGUI corazon_n;
     [SerializeField] private int saludActual;
+    [SerializeField] private TMP_Text timerText;
+
+    private void Start()
+    {
+        ControladorGlobal.Instance.colocarTimerText(timerText);
+    }
 
     public void ActualizarVidas(int saludNuevo)
     {

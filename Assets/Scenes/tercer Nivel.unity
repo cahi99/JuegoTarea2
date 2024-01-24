@@ -61281,6 +61281,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenuUI: {fileID: 664592845}
+  MenuCreditoUI: {fileID: 2030014575}
 --- !u!4 &433309717
 Transform:
   m_ObjectHideFlags: 0
@@ -61293,7 +61294,8 @@ Transform:
   m_LocalPosition: {x: 859.5, y: 483.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1842912768}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &459882188
@@ -61825,7 +61827,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.7600002, y: -46.04, z: -10}
+  m_LocalPosition: {x: -9.06, y: -9.99, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -63063,6 +63065,59 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 864efcf3d3e8f3e4d8242c213bd53414, type: 3}
+--- !u!1 &776271432
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 776271434}
+  - component: {fileID: 776271433}
+  m_Layer: 0
+  m_Name: ControladorGlobal
+  m_TagString: ControladorGlobal
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &776271433
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 776271432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec4e471a90f0b2745a6635e27194dda8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  puntuacion: 0
+  salud: 0
+  vida: 0
+  nivel: 0
+  tiempo: 0
+  segundos: 0
+  minutos: 0
+  horas: 0
+  timerText: {fileID: 0}
+--- !u!4 &776271434
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 776271432}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.13000023, y: 1.1700002, z: -10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &791064801
 GameObject:
   m_ObjectHideFlags: 0
@@ -65425,7 +65480,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6829876817800133521, guid: 77ffeeaaab8cd07478c1c716a00eda71, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.00000023841858
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6829876817800133521, guid: 77ffeeaaab8cd07478c1c716a00eda71, type: 3}
       propertyPath: m_LocalPosition.y
@@ -65445,11 +65500,11 @@ PrefabInstance:
       objectReference: {fileID: 2030014575}
     - target: {fileID: 8712241740729966923, guid: 77ffeeaaab8cd07478c1c716a00eda71, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.76
+      value: -9.06
       objectReference: {fileID: 0}
     - target: {fileID: 8712241740729966923, guid: 77ffeeaaab8cd07478c1c716a00eda71, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -46.04
+      value: -9.99
       objectReference: {fileID: 0}
     - target: {fileID: 8712241740729966923, guid: 77ffeeaaab8cd07478c1c716a00eda71, type: 3}
       propertyPath: m_LocalPosition.z
@@ -67641,7 +67696,7 @@ RectTransform:
   - {fileID: 585820868}
   - {fileID: 2030014576}
   - {fileID: 501150225}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 433309717}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -68452,6 +68507,30 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 501150224}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1842912763}
+        m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
+        m_MethodName: Reanudar
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2126623299
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -68602,8 +68681,8 @@ SceneRoots:
   - {fileID: 531021624}
   - {fileID: 1447714122}
   - {fileID: 433309717}
-  - {fileID: 1842912768}
   - {fileID: 1743282393}
   - {fileID: 31760637}
   - {fileID: 505528763}
   - {fileID: 211259759}
+  - {fileID: 776271434}
